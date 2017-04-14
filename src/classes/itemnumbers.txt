@@ -1,0 +1,6 @@
+All-Purpose_Flour=9.99
+Big Aged Cheese=10.99
+Carrots=1.99
+AAA Batteries(12 Pack)=2.99
+Big Moldy Cheese=7.99
+Milk=3.99
