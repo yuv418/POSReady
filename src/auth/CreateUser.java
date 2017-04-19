@@ -3,7 +3,7 @@ import java.io.*;
 import java.nio.*;
 import java.util.Scanner; 
 import org.apache.commons.io.*; 
-
+import config.POSConfig;
 public class CreateUser {
 private PrintWriter userconfw; 
 private Scanner usercheck; 
@@ -23,7 +23,7 @@ private String userconfpath;
 		if (!isAdmin){
 			adminyn = "n"; 
 		}
-		this.userconfpath = new File("src\\auth\\users\\"  + this.username + ".usrconf").getAbsolutePath(); 
+		this.userconfpath = new File(new POSConfig().getUserNamePath() + "\\" + this.username + ".usrconf").getAbsolutePath(); 
 		
 		this.userconfw = new PrintWriter(userconfpath); 
 		

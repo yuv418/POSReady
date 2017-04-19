@@ -114,11 +114,20 @@ public class elevated_cli {
 			}
 		}
 		
-		POSConfig write = new POSConfig(storename, tax);
+		
+		in.nextLine();
+		System.out.print("User Name Path (Where user info is stored): ");
+		String userpathwrite = in.nextLine(); 
+		if (userpathwrite.charAt(userpathwrite.length()) == '\\'){
+			userpathwrite = userpathwrite.substring(0, userpathwrite.length() - 1);
+		}
+		System.out.print("Export Information Path (Where sale exports are stored): ");
+		String plogwritepath = in.nextLine(); 
+		if (plogwritepath.charAt(plogwritepath.length()) == '\\'){
+			plogwritepath = plogwritepath.substring(0, userpathwrite.length() - 1);
+		}
+		POSConfig write = new POSConfig(storename, tax, userpathwrite, plogwritepath);
 		write.exportInfo();
-		
-		
-		
 		
 	}
 
@@ -155,7 +164,7 @@ public class elevated_cli {
 		System.out.print("\nPrice: ");
 		double itemprice = in.nextDouble(); 
 		String toappend = itemname + "=" + itemprice;
-		String filename= "src\\classes\\itemnumbers.txt";
+		String filename= new POSConfig().getUserNamePath() + "\\itemnumbers.txt";
 	    FileWriter fw = null; 
 		try {
 			fw = new FileWriter(filename,true);

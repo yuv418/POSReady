@@ -17,7 +17,7 @@ import java.math.RoundingMode;
 import javax.swing.JTextArea; 
 import org.apache.commons.io.*;
 import config.POSConfig;
-
+import config.POSConfig;
 public class POSRegister  {
 	
 	private int sales; 
@@ -37,7 +37,7 @@ public class POSRegister  {
 		storeName = storename; 
 		items = new HashMap<String, Double>(); 
 		list = new ArrayList<String>();
-		String filePath = new File("src\\classes\\itemnumbers.txt").getAbsolutePath();
+		String filePath = new File(new POSConfig().getUserNamePath() + "\\itemnumbers.txt").getAbsolutePath();
 		 File file = new File(filePath);
 		 list = (ArrayList<String>) FileUtils.readLines(file, "UTF-8");
 		 this.salestax = salestax; 
@@ -126,7 +126,7 @@ public class POSRegister  {
 		return finalPrice;
 	}
 	public void exportSaleInfo(String outfile) throws FileNotFoundException{
-		PrintWriter out = new PrintWriter(outfile);
+		PrintWriter out = new PrintWriter(new POSConfig().getPlogWritePath() + "\\" + outfile);
 		out.println("\t\t\t" + storeName);
 		for (Entry<String, Double> entry : items.entrySet()) {
 		    String key = entry.getKey();

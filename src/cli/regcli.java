@@ -26,7 +26,7 @@ public class regcli {
 		String username = in.next(); 
 		while (!isauthorized){
 		try {
-			f = new User("src\\auth\\users\\" + username + ".usrconf");
+			f = new User( username + ".usrconf");
 		} catch (FileNotFoundException e) {
 			System.err.println("An error occurred. The user does not exist.");
 			System.exit(1);
@@ -76,7 +76,7 @@ public class regcli {
 		ArrayList<String> items= new ArrayList<String>(); 
 		System.out.println("NewSale Initiated");
 		Scanner in = new Scanner(System.in);
-		POSConfig c = new POSConfig("i", 2); 
+		POSConfig c = new POSConfig("i", 2,"e", "e"); 
 		String storename = c.getStoreName(); 
 		POSRegister reg = null;
 		try {
@@ -164,15 +164,20 @@ public class regcli {
 					else if(e[0].equals("exportsaleinfo")){
 						reg.calculateTax();
 						reg.calculateTotalPrice();
-						if (!e[1].equals("")){
-							try {
-								reg.exportSaleInfo(e[1]);
-							} catch (FileNotFoundException e1) {
-								
-								System.out.println("POSReady could not handle the request.");;
+						try{
+							if (!e[1].equals("")){
+								try {
+									reg.exportSaleInfo(e[1]);
+								} catch (FileNotFoundException e1) {
+									
+									System.out.println("POSReady could not handle the request.");;
+								}
+							}
+							else{
+								System.out.println("No file argument given");
 							}
 						}
-						else{
+						catch (ArrayIndexOutOfBoundsException notgiven){
 							System.out.println("No file argument given");
 						}
 						break;

@@ -9,7 +9,7 @@ import java.io.Console;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
+import config.POSConfig;
 import org.python.core.PyObject;
 import org.python.util.PythonInterpreter; 
 
@@ -34,7 +34,7 @@ private JTextField usr;
 		List usrinfo = new ArrayList<String>();
 		//String filePath = new File("src\\utils\\bob.usrconf").getAbsolutePath();
 		this.userpath = userpath; 
-		String filepath = new File(userpath).getAbsolutePath();
+		String filepath = new File(new POSConfig().getUserNamePath() + "\\" + userpath).getAbsolutePath();
 		
 		
 		 File file = new File(filepath);
