@@ -1,10 +1,10 @@
 # POSReady
-A command line based Point-Of-Sale System
+Introducing POSReady 2.0 (coming soon)
+With a lot of new features 
 
-Has multiple features including printing to a reciept printer.
-
-Dependencies: JLine (Should remove, but one import is there)<br>
-              Apache Commons IO<br>
-              Jython (If you're running this on a regular terminal, you're going to be fine.)<br>
-              
-Enjoy!               
+- Refined persons management
+- MariaDB for all items and users
+- 3 Modes: Command Line, Graphical, and Curses Mode (Graphical interface for command line)
+- Faster performance and improved, quicker commands
+<br>And much more to come!! 
+<br>Stay tuned!
