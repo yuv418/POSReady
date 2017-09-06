@@ -32,10 +32,11 @@
   		<artifactId>org.apache.commons.io</artifactId>
   		<version>2.4</version>
   	</dependency>
+  	
   	<dependency>
-  		<groupId>jython</groupId>
-  		<artifactId>jython</artifactId>
-  		<version>20020827</version>
+  		<groupId>org.python</groupId>
+  		<artifactId>jython-standalone</artifactId>
+  		<version>2.7.1</version>
   	</dependency>
   </dependencies>
 </project>
