@@ -59,7 +59,7 @@ private XPath result_get;
 	}
 	
 	
-	public String getResultById(String xmlpath) {
+	public String getResultByPath(String xmlpath) {
 		/*
 		  Returns a string based on XPath specification
 		 */

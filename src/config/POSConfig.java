@@ -26,6 +26,9 @@ public POSConfig(){
 	//do nothing. seriously.
 	this.canaccess = false; //not seriously :D
 }
+
+
+
 public void exportInfo(){
 	PrintWriter f = null; 
 	try {
