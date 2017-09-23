@@ -1,4 +1,4 @@
-package config;
+package utils;
 
 // *1 use POSConfig to read debugging and print user-friendly messages or debug messages based on xml prefs
 

@@ -1,3 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<string name="sql_username">default_u</string>
-<string name="sql_password">letmeinmysql</string> 
+<sql_credentials>
+	<sql_username>default_u</sql_username>
+	<sql_password>letmeinmysql</sql_password>
+</sql_credentials>

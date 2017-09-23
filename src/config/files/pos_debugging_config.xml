@@ -1,3 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<enable_console_debug>true</enable_console_debug>
-
+<debug_basic_info>
+	<enable_console_debug>true</enable_console_debug>
+</debug_basic_info>
+	
