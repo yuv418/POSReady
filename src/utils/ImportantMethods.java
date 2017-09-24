@@ -31,7 +31,20 @@ public static void logoDisplay() throws IOException{
 }
 
 
-public Connection getRegularPOSDBConnection() {
+public static Connection getRegularPOSDBConnection() {
+try {
+	Class.forName("org.mariadb.jdbc.Driver");
+} catch (ClassNotFoundException e1) {
+	if(config.POSDebugConfig.console_debug()) {
+		System.err.println("debug: cannot find mariadb driver. POSReady will now shut down");
+		e1.printStackTrace();
+		System.exit(-1);
+	}
+	else if(config.POSDebugConfig.console_debug()) {
+		System.err.println("POSReady has encountered a fatal error and will now shut down.");
+		System.exit(-1);
+	}
+}	
 Connection mariadb_default = null;
 	try {
 		mariadb_default = DriverManager.getConnection("jdbc:mariadb://localhost:3306/posready", POSSQLConfig.getSQLUsername(), POSSQLConfig.getSQLPassword());
