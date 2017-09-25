@@ -16,11 +16,18 @@ private String hpw;
 private String adminlevel; //pos_users, pos_admin_users, pos_top_admin_users
 private String adminyn; 
 private String userconfpath; 
+private String firstname; 
+private String lastname; 
+private String middlename; 
+
 private Connection mariadb_default; 
-	public CreateUser(String username, String password, String adminlevel) throws FileNotFoundException, IOException{
+	public CreateUser(String firstname, String middlename, String lastname, String username, String password, String adminlevel) throws FileNotFoundException, IOException{
 		this.hpw = DigestUtils.sha256Hex(password);
 		this.username = username.trim(); 
 		this.adminlevel = adminlevel; 
+		this.firstname = firstname; 
+		this.middlename = middlename; 
+		this.lastname = lastname; 
 		mariadb_default = ImportantMethods.getRegularPOSDBConnection(); 
 	}
 	
@@ -43,7 +50,9 @@ private Connection mariadb_default;
 		id += 1; 
 		String insert_employee = "INSERT INTO " + this.adminlevel + " VALUES (\"" + this.username + "\"," + id + ",\"" + this.hpw + "\");";
 		insert_info.execute(insert_employee);
-		insert_info.close();
+		String map_employee = "INSERT INTO users_mappings VALUES(\"" + this.firstname + "\",\"" + this.middlename + "\",\"" + this.lastname + "\",\"" + this.username + "\"," + id + ",\"" + this.adminlevel + "\");";
+		insert_info.execute(map_employee);
+		insert_info.close(); 
 		System.out.println("Employee created successfully.");
 	} catch (SQLException e) {
 		if (config.POSDebugConfig.console_debug()) {
