@@ -2,9 +2,7 @@ package utils;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,4 +61,26 @@ Connection mariadb_default = null;
 return mariadb_default;
 }
 
+
+public static String getResultString(Connection mariadb_default, String table_name, String column, String column_check, String column_equal) throws SQLException {
+	String query = "SELECT " + column + " FROM " + table_name + " WHERE " + column_check + "=\"" + column_equal + "\";";
+	Statement do_query = mariadb_default.createStatement();
+	ResultSet query_result = do_query.executeQuery(query);
+	String result_string = "";
+	while (query_result.next()) {
+		result_string = query_result.getString(column);
+	}
+	return result_string; 
+}
+
+public static int getResultInt(Connection mariadb_default, String table_name, String column, String column_check, String column_equal) throws SQLException {
+	String query = "SELECT " + column + " FROM " + table_name + " WHERE " + column_check + "=" + column_equal + ";";
+	Statement do_query = mariadb_default.createStatement();
+	ResultSet query_result = do_query.executeQuery(query);
+	int result_int = 0;
+	while (query_result.next()) {
+		result_int = query_result.getInt(column);
+	}
+	return result_int; 
+}
 }

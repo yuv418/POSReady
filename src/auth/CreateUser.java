@@ -31,15 +31,20 @@ private Connection mariadb_default;
 		mariadb_default = ImportantMethods.getRegularPOSDBConnection(); 
 	}
 	
-	public void writeInfo(){
+	public boolean writeInfo() throws EmployeeNotCreatedException, SQLException{
 	/*	this.userconfw.println(username);
 		this.userconfw.println(hashedpassword);
 		this.userconfw.println(adminyn);
 		this.userconfw.close();
 	*/
 	Statement insert_info = null;
-	try {
+
 		insert_info = mariadb_default.createStatement();
+		String check_username_exists = ImportantMethods.getResultString(mariadb_default, "users_mappings", "username", "username", this.username);
+		if(check_username_exists.equals(this.username)) {
+			//username exists, pick a new username; 
+			throw new EmployeeNotCreatedException("username_exists"); //controller will deduce message "Sorry, the username exists already" and send it to the view. Controller here is exception
+		}
 		String querylastid = "SELECT id FROM " + adminlevel + " ORDER BY id DESC LIMIT 1"; //get last id
 		ResultSet result_lastid = null;
 		result_lastid = insert_info.executeQuery(querylastid);
@@ -54,15 +59,7 @@ private Connection mariadb_default;
 		insert_info.execute(map_employee);
 		insert_info.close(); 
 		System.out.println("Employee created successfully.");
-	} catch (SQLException e) {
-		if (config.POSDebugConfig.console_debug()) {
-			System.err.println("debug: could not execute query on the posready database");
-			e.printStackTrace();
-		}
-		
-		else if(!config.POSDebugConfig.console_debug()) {
-			System.err.println("Sorry, we couldn't record the information specified.");
-		}
+		return true; 
 	}
 	
 	
@@ -73,4 +70,4 @@ private Connection mariadb_default;
 	}
 	
 	
-}
+
