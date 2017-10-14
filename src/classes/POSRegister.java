@@ -18,6 +18,8 @@ import javax.swing.JTextArea;
 import org.apache.commons.io.*;
 import config.POSConfig;
 import config.POSConfig;
+import java.sql.*;
+
 public class POSRegister  {
 	
 	private int sales; 
@@ -30,6 +32,9 @@ public class POSRegister  {
 	private double saletax;
 	private double finalPrice; 
 	private ArrayList<String> itemslist; 
+	private Connection mariadb_default = utils.ImportantMethods.getRegularPOSDBConnection();
+	
+	
 	public POSRegister(String storename, double salestax) throws IOException, FileNotFoundException{
 		currentItem = 0; 
 		sales = 0; 
@@ -89,17 +94,20 @@ public class POSRegister  {
 		
 		
 	}
-	
+	@Deprecated
 	public void printSubTotal(){
 		System.out.println(totalPrice);
 	}
+	@Deprecated
 	public void printTotal(){
 		System.out.println(finalPrice);
 	}
+	@Deprecated
 	public void printStoreName(){
 		System.out.println(storeName);
 		
 	}
+	@Deprecated
 	public void exportTotal(String outFile) throws FileNotFoundException{
 		
 			PrintWriter out = new PrintWriter(outFile);	

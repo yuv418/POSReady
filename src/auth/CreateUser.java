@@ -9,13 +9,11 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.*; 
 import config.POSConfig;
 public class CreateUser {
-private PrintWriter userconfw; 
-private Scanner usercheck; 
+
+
 private String username; 
 private String hpw; 
 private String adminlevel; //pos_users, pos_admin_users, pos_top_admin_users
-private String adminyn; 
-private String userconfpath; 
 private String firstname; 
 private String lastname; 
 private String middlename; 
@@ -58,7 +56,7 @@ private Connection mariadb_default;
 		String map_employee = "INSERT INTO users_mappings VALUES(\"" + this.firstname + "\",\"" + this.middlename + "\",\"" + this.lastname + "\",\"" + this.username + "\"," + id + ",\"" + this.adminlevel + "\");";
 		insert_info.execute(map_employee);
 		insert_info.close(); 
-		System.out.println("Employee created successfully.");
+		//System.out.println("Employee created successfully."); //no no no! this is for debug purposes ONLY!!!!
 		return true; 
 	}
 	

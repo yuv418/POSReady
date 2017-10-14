@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import auth.CreateUser;
 import auth.EmployeeNotCreatedException; 
-public class TstCreateUser {
+public class CreateUserTest {
 
 	public static void main(String[] args) throws FileNotFoundException, IOException, EmployeeNotCreatedException, SQLException {
 		CreateUser v = new CreateUser("billy", "bob", "joe", "billy", "honk", "pos_top_admin_users"); 
