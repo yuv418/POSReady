@@ -2,12 +2,9 @@ package auth;
 import java.io.*; 
 import java.sql.*;
 import utils.ImportantMethods;
-import java.nio.*;
-import java.util.Scanner;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.io.*; 
-import config.POSConfig;
+
 public class CreateUser {
 
 
