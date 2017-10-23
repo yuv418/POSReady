@@ -16,21 +16,36 @@ private String middlename;
 private String lastname; 
 private int id; 
 private Connection mariadb_default;
-public POSEmployee(String username) throws SQLException{
+public POSEmployee(String username) throws SQLException, ClassNotFoundException{
 /*
- * Default POSEmployee constructor
+ * username POSEmployee constructor
  * 
  * 	
  */
 	this.username = username; 
 	this.mariadb_default = ImportantMethods.getRegularPOSDBConnection();
-	this.user_level = ImportantMethods.getResultString(mariadb_default, "users_mappings", "users_mappings", "username" , username);
+	this.user_level = ImportantMethods.getResultString(mariadb_default, "users_mappings", "user_level", "username" , username);
 	this.lastname = ImportantMethods.getResultString(mariadb_default, "users_mappings", "lastname", "username", username);
 	this.firstname = ImportantMethods.getResultString(mariadb_default, "users_mappings", "firstname", "username", username);
 	this.middlename = ImportantMethods.getResultString(mariadb_default, "users_mappings", "middlename", "username", username);
 	this.id = ImportantMethods.getResultInt(mariadb_default, "users_mappings", "id", "username", username);
 }
 
+public POSEmployee(int user_id) throws SQLException, ClassNotFoundException{
+/*
+ * id POSEmployee constructor
+ */
+	
+	this.id = user_id; 
+	this.mariadb_default = ImportantMethods.getRegularPOSDBConnection();
+	this.user_level = ImportantMethods.getResultString(mariadb_default, "users_mappings", "user_level", "id" , id);
+	this.lastname = ImportantMethods.getResultString(mariadb_default, "users_mappings", "lastname", "id", id);
+	this.firstname = ImportantMethods.getResultString(mariadb_default, "users_mappings", "firstname", "id", id);
+	this.middlename = ImportantMethods.getResultString(mariadb_default, "users_mappings", "middlename", "id", id);
+	this.id = ImportantMethods.getResultInt(mariadb_default, "users_mappings", "id", "id", id);
+	
+	
+}
 public String getUsername() {
 	return username;
 }

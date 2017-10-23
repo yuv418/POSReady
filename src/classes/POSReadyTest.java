@@ -1,12 +1,13 @@
 package classes;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
 import classes.POSRegister;
 public class POSReadyTest {
 
-	public static void main(String[] args) throws IOException{
+	public static void main(String[] args) throws IOException, ClassNotFoundException, SQLException{
 		POSRegister v = null; 
 		try {
 			v = new POSRegister("Test Store", 0.07);

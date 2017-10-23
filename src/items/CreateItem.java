@@ -6,13 +6,14 @@ public class CreateItem {
 	//this class manages items.
 	//we'll take some of the logic from CreateUser.java's implementation.
 	
-private Connection mariadb_default = utils.ImportantMethods.getRegularPOSDBConnection();
+private Connection mariadb_default;
 private String item_name; 
 private String item_description;
 private int item_id;
 private double item_price; 
 private Statement do_queries = mariadb_default.createStatement();
-	public CreateItem(String item_name, String item_description, double item_price) throws SQLException{
+	public CreateItem(String item_name, String item_description, double item_price) throws SQLException, ClassNotFoundException{
+		mariadb_default = utils.ImportantMethods.getRegularPOSDBConnection();
 		this.item_name = item_name.trim();
 		this.item_description = item_description; 
 		this.item_price = item_price; 

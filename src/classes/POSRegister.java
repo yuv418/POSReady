@@ -32,10 +32,11 @@ public class POSRegister  {
 	private double saletax;
 	private double finalPrice; 
 	private ArrayList<String> itemslist; 
-	private Connection mariadb_default = utils.ImportantMethods.getRegularPOSDBConnection();
+	private Connection mariadb_default;
 	
 	
-	public POSRegister(String storename, double salestax) throws IOException, FileNotFoundException{
+	public POSRegister(String storename, double salestax) throws IOException, FileNotFoundException, SQLException, ClassNotFoundException{
+		mariadb_default = utils.ImportantMethods.getRegularPOSDBConnection();
 		currentItem = 0; 
 		sales = 0; 
 		totalPrice = 0; 

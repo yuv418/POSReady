@@ -16,13 +16,13 @@ private String lastname;
 private String middlename; 
 
 private Connection mariadb_default; 
-	public CreateUser(String firstname, String middlename, String lastname, String username, String password, String adminlevel) throws FileNotFoundException, IOException{
+	public CreateUser(String firstname, String middlename, String lastname, String username, String password, String adminlevel) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException{
 		this.hpw = DigestUtils.sha256Hex(password);
 		this.username = username.trim(); 
 		this.adminlevel = adminlevel; 
 		this.firstname = firstname; 
 		this.middlename = middlename; 
-		this.lastname = lastname; 
+		this.lastname = lastname;  
 		mariadb_default = ImportantMethods.getRegularPOSDBConnection(); 
 	}
 	
