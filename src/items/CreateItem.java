@@ -1,7 +1,7 @@
 package items;
 import java.sql.*;
-
 import utils.ImportantMethods;
+
 public class CreateItem {
 	//this class manages items.
 	//we'll take some of the logic from CreateUser.java's implementation.
@@ -11,9 +11,11 @@ private String item_name;
 private String item_description;
 private int item_id;
 private double item_price; 
-private Statement do_queries = mariadb_default.createStatement();
+private Statement do_queries;
 	public CreateItem(String item_name, String item_description, double item_price) throws SQLException, ClassNotFoundException{
 		mariadb_default = utils.ImportantMethods.getRegularPOSDBConnection();
+		do_queries = mariadb_default.createStatement();
+		
 		this.item_name = item_name.trim();
 		this.item_description = item_description; 
 		this.item_price = item_price; 
@@ -52,6 +54,7 @@ private Statement do_queries = mariadb_default.createStatement();
 		
 		String insert_query = build_insert_query.toString();
 		do_queries.executeQuery(insert_query);
+		
 		do_queries.close(); 
 		
 		return true; 

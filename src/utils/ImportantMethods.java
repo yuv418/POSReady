@@ -84,4 +84,27 @@ public static int getResultInt(Connection mariadb_default, String table_name, St
 	}
 	return result_int; 
 }
+
+
+public static double getResultDouble(Connection mariadb_default, String table_name, String column, String column_check, String column_equal) throws SQLException {
+	String query = "SELECT " + column + " FROM " + table_name + " WHERE " + column_check + "=\"" + column_equal + "\";";
+	Statement do_query = mariadb_default.createStatement();
+	ResultSet query_result = do_query.executeQuery(query);
+	double result_double = 0;
+	while (query_result.next()) {
+		result_double = query_result.getDouble(column);
+	}
+	return result_double; 
+}
+
+public static double getResultDouble(Connection mariadb_default, String table_name, String column, String column_check, int column_equal) throws SQLException {
+	String query = "SELECT " + column + " FROM " + table_name + " WHERE " + column_check + "=" + column_equal + ";";
+	Statement do_query = mariadb_default.createStatement();
+	ResultSet query_result = do_query.executeQuery(query);
+	double result_double = 0;
+	while (query_result.next()) {
+		result_double = query_result.getDouble(column);
+	}
+	return result_double; 
+}
 }

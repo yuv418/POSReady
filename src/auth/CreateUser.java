@@ -35,12 +35,15 @@ private Connection mariadb_default;
 	Statement insert_info = null;
 
 		insert_info = mariadb_default.createStatement();
+		
 		String check_username_exists = ImportantMethods.getResultString(mariadb_default, "users_mappings", "username", "username", this.username);
 		if(check_username_exists.equals(this.username)) {
 			//username exists, pick a new username; 
 			throw new EmployeeNotCreatedException("username_exists"); //controller will deduce message "Sorry, the username exists already" and send it to the view. Controller here is exception
 		}
+		
 		String querylastid = "SELECT id FROM " + adminlevel + " ORDER BY id DESC LIMIT 1"; //get last id
+		
 		ResultSet result_lastid = null;
 		result_lastid = insert_info.executeQuery(querylastid);
 		int id = 0; 
@@ -48,12 +51,13 @@ private Connection mariadb_default;
 			id = result_lastid.getInt("id");
 		}
 		id += 1; 
+		
 		String insert_employee = "INSERT INTO " + this.adminlevel + " VALUES (\"" + this.username + "\"," + id + ",\"" + this.hpw + "\");";
 		insert_info.execute(insert_employee);
 		String map_employee = "INSERT INTO users_mappings VALUES(\"" + this.firstname + "\",\"" + this.middlename + "\",\"" + this.lastname + "\",\"" + this.username + "\"," + id + ",\"" + this.adminlevel + "\");";
 		insert_info.execute(map_employee);
-		insert_info.close(); 
-		//System.out.println("Employee created successfully."); //no no no! this is for debug purposes ONLY!!!!
+		
+		insert_info.close();
 		return true; 
 	}
 	

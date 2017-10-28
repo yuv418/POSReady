@@ -48,6 +48,9 @@ public class DeleteUser {
 		delete_user_exec.execute(stmt_del_umappings);
 		delete_user_exec.execute(stmt_del_ulevel);
 		
+		//close connections
+		delete_user_exec.close();
+		
 		return true; 
 	}
 	

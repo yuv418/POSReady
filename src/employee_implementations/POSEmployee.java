@@ -67,7 +67,7 @@ public String getLastName() {
 	return lastname; 
 }
 
-public int getId() {
+public int getEmployeeId() {
 	return id; 
 }
 
