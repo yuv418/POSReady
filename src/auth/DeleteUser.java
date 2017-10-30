@@ -29,7 +29,7 @@ public class DeleteUser {
 		POSEmployee tb_del = new POSEmployee(username);
 		
 		String stmt_del_umappings = "DELETE FROM users_mappings where username=\"" + username + "\";" ;
-		String stmt_del_ulevel = "DELETE FROM " + tb_del.getUserLevel() + "where username=\"" + username + "\";";
+		String stmt_del_ulevel = "DELETE FROM " + tb_del.getUserLevel() + " where username=\"" + username + "\";";
 		
 		delete_user_exec.execute(stmt_del_umappings);
 		delete_user_exec.execute(stmt_del_ulevel);

@@ -13,4 +13,10 @@ private String env_type;
 	public void display_command_line() {
 		//logic can go into other classes
 	}
+	
+	public String getEnvironmentType() {
+		return this.env_type; 
+	}
+	
+	
 }
