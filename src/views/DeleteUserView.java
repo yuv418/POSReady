@@ -42,8 +42,10 @@ public class DeleteUserView extends View{
 				du = new DeleteUser();
 			} catch (ClassNotFoundException e1) {
 				JOptionPane.showMessageDialog(null, "Sorry, an internal error occurred. POSReady will now exit this component.");
+				return;
 			} catch (SQLException e1) {
 				JOptionPane.showMessageDialog(null, "Sorry, an internal error occurred. POSReady will now exit this component.");
+				return;
 			}
 			String method_of_deletion = (String) choose_method_deletion.getSelectedItem();
 			if (method_of_deletion.equals("Id")) {
@@ -53,14 +55,17 @@ public class DeleteUserView extends View{
 				}
 				catch (NumberFormatException e) {
 					JOptionPane.showMessageDialog(null, "Sorry, but your input was invalid. \n REASON: The id specified was not a valid integer.");
+					return;
 				}
 				
 				try {
 					du.delete(id_del);
 				} catch (ClassNotFoundException e) {
 					JOptionPane.showMessageDialog(null, "Sorry, an internal error occurred. POSReady will now exit this component.");
+					return;
 				} catch (SQLException e) {
 					JOptionPane.showMessageDialog(null, "Sorry, an internal error occurred. POSReady will now exit this component.");
+					return;
 				} 
 			}
 			else if (method_of_deletion.equals("Username")) {
@@ -72,8 +77,10 @@ public class DeleteUserView extends View{
 					du.delete(username_del);
 				} catch (ClassNotFoundException e) {
 					JOptionPane.showMessageDialog(null, "Sorry, an internal error occurred. POSReady will now exit this component.");
+					return;
 				} catch (SQLException e) {
 					JOptionPane.showMessageDialog(null, "Sorry, an internal error occurred. POSReady will now exit this component.");
+					return; 
 				}
 			}
 			
