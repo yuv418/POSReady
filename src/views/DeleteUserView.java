@@ -34,7 +34,7 @@ public class DeleteUserView extends View{
 		jf.setVisible(true);
 	}
 	
-	public class DeleteUserSubmitListener implements ActionListener{
+	public class DeleteUserSubmitListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent arg0){
 			DeleteUser du = null;
@@ -89,4 +89,21 @@ public class DeleteUserView extends View{
 		}
 	
 	}
+	
+	public class DeleteUserFormValidator impelements Runnable{
+		public void run(){
+			String response = get_response.getText();
+			String method_deletion = get_method_deletetion.getSelectedItem().toString(); 
+			if (method_deletion.equals("Id") && response.matches("^-?\\d+$")){
+					
+				
+			}
+				
+		}
+		
+		
+	}
+	
+	
+	
 }
