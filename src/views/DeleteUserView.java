@@ -1,15 +1,19 @@
 package views;
 import auth.DeleteUser;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*; 
+import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.sql.SQLException;
 
 public class DeleteUserView extends View{
 	private JComboBox choose_method_deletion; 
 	private JTextField get_response; 
+	private JButton submit; 
 	public DeleteUserView(String env_type) {
 		super(env_type);
 	}
@@ -23,18 +27,22 @@ public class DeleteUserView extends View{
 		
 		get_response = new JTextField(); 
 		
-		JButton submit = new JButton("Submit");
+		submit = new JButton("Submit");
 		submit.addActionListener(new DeleteUserSubmitListener());
 		jp.add(choose_method_deletion);
 		jp.add(get_response);
 		jp.add(submit);
 		
 		jf.add(jp);
-		jf.setSize(300, 300);
+		jf.setSize(300, 125);
+		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.setVisible(true);
+	
+		Thread validator = new Thread (new DeleteUserValidator());
+		validator.run(); 
 	}
 	
-	public class DeleteUserSubmitListener implements ActionListener{
+	public class DeleteUserSubmitListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent arg0){
 			DeleteUser du = null;
@@ -50,13 +58,8 @@ public class DeleteUserView extends View{
 			String method_of_deletion = (String) choose_method_deletion.getSelectedItem();
 			if (method_of_deletion.equals("Id")) {
 				int id_del = 0; 
-				try {
-					id_del = Integer.parseInt(get_response.getText());
-				}
-				catch (NumberFormatException e) {
-					JOptionPane.showMessageDialog(null, "Sorry, but your input was invalid. \n REASON: The id specified was not a valid integer.");
-					return;
-				}
+				id_del = Integer.parseInt(get_response.getText());
+				
 				
 				try {
 					du.delete(id_del);
@@ -87,6 +90,45 @@ public class DeleteUserView extends View{
 			JOptionPane.showMessageDialog(null, "The user was deleted successfully.");
 			
 		}
+
 	
+		
+
+	}
+	
+	public class DeleteUserValidator implements Runnable{
+		public void run() {
+			Border default_border = get_response.getBorder(); 
+			Border red_border = BorderFactory.createLineBorder(Color.RED);
+			while(true) {
+				String response = get_response.getText();
+				if (choose_method_deletion.getSelectedItem().toString().equals("Id")) {
+					if (response.matches("^\\d+$")) { //is an integer 
+						get_response.setBorder(default_border);
+						get_response.setToolTipText("");
+						submit.setEnabled(true);
+					}
+					else {
+						get_response.setBorder(red_border);
+						get_response.setToolTipText("The Id you entered was not an integer!");
+						submit.setEnabled(false);
+					}
+				}
+				
+				else if (choose_method_deletion.getSelectedItem().toString().equals("Username")){
+					if (!response.contains(" ")) {
+						submit.setEnabled(true);
+						get_response.setBorder(default_border);
+						get_response.setToolTipText("");
+					}
+					else {
+						get_response.setBorder(red_border);
+						get_response.setToolTipText("The Id you entered was not an integer!");
+						submit.setEnabled(false);
+					}
+				}
+				
+			}
+		}
 	}
 }
