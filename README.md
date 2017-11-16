@@ -1,4 +1,4 @@
-# POSReady <img src="src/res/poslogo.png" height="10%" width="10%" style="align:right" />
+# POSReady <br><img src="src/res/poslogo.png" height="10%" width="10%" style="align:right" />
 Introducing POSReady 2.0 (coming soon)
 With a lot of new features 
 - Refined persons management
