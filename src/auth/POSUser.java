@@ -1,10 +1,10 @@
-package employee_implementations;
+package auth;
 import java.sql.*;
 
 import config.POSDebugConfig;
 import config.POSSQLConfig;
 import utils.ImportantMethods;
-public class POSEmployee {
+public class POSUser {
 /****
  * A POSReady user with basic privileges.
  */
@@ -16,7 +16,7 @@ private String middlename;
 private String lastname; 
 private int id; 
 private Connection mariadb_default;
-public POSEmployee(String username) throws SQLException, ClassNotFoundException{
+public POSUser(String username) throws SQLException, ClassNotFoundException{
 /*
  * username POSEmployee constructor
  * 
@@ -31,7 +31,7 @@ public POSEmployee(String username) throws SQLException, ClassNotFoundException{
 	this.id = ImportantMethods.getResultInt(mariadb_default, "users_mappings", "id", "username", username);
 }
 
-public POSEmployee(int user_id) throws SQLException, ClassNotFoundException{
+public POSUser(int user_id) throws SQLException, ClassNotFoundException{
 /*
  * id POSEmployee constructor
  */

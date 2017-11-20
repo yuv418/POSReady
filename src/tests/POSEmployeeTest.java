@@ -1,12 +1,12 @@
 package tests;
 import java.sql.SQLException;
 
-import employee_implementations.POSEmployee;
+import auth.POSUser;
 
 public class POSEmployeeTest {
 	public static void main(String[] args) throws ClassNotFoundException {
 		try {
-			POSEmployee bob = new POSEmployee(1);
+			POSUser bob = new POSUser(1);
 			System.out.println(bob.getUserLevel());
 			}
 		catch(SQLException e) {

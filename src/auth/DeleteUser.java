@@ -2,14 +2,13 @@ package auth;
 import java.io.*;
 import java.sql.*;
 
-import employee_implementations.POSEmployee;
 import utils.ImportantMethods;
 
 public class DeleteUser {
 	//delete a user by deleting their name from users_mappings pos_*_users;
 	private Connection mariadb_default;
 	private Statement delete_user_exec; 
-	private POSEmployee employee_info; 
+	private POSUser employee_info; 
 	public DeleteUser() throws ClassNotFoundException, SQLException{
 		mariadb_default = ImportantMethods.getRegularPOSDBConnection(); 
 		delete_user_exec = mariadb_default.createStatement();
@@ -26,7 +25,7 @@ public class DeleteUser {
 		 * 
 		 * 
 		 */
-		POSEmployee tb_del = new POSEmployee(username);
+		POSUser tb_del = new POSUser(username);
 		
 		String stmt_del_umappings = "DELETE FROM users_mappings where username=\"" + username + "\";" ;
 		String stmt_del_ulevel = "DELETE FROM " + tb_del.getUserLevel() + " where username=\"" + username + "\";";
@@ -40,7 +39,7 @@ public class DeleteUser {
 	public boolean delete(int id) throws SQLException, ClassNotFoundException {
 		//same logic from delete(String username) applies here. 
 		
-		POSEmployee tb_del = new POSEmployee(id);
+		POSUser tb_del = new POSUser(id);
 		
 		String stmt_del_umappings = "DELETE FROM users_mappings where id=" + id + ";" ;
 		String stmt_del_ulevel = "DELETE FROM " + tb_del.getUserLevel() + " where id=" + id + ";";
