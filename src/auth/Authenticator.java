@@ -3,6 +3,8 @@ package auth;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import org.apache.commons.lang3.StringUtils;
+
 import utils.ImportantMethods;
 
 public class Authenticator {
@@ -35,5 +37,13 @@ public class Authenticator {
 		}
 		db_enc_pass = ""; //wipe sensitive data 
 		return false; 
+	}
+	
+	public void setEncPass(String enc_pass) {
+		this.enc_pass = enc_pass; 
+	}
+	
+	public void setUsername(String username) {
+		this.username = username; 
 	}
 }
