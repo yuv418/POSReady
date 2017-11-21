@@ -64,9 +64,13 @@ public class AuthenticatorView extends View{
 			Console console = System.console();
 	        if (console == null && POSDebugConfig.console_debug()) {
 	            System.out.println("DEBUG: You are running POSReady from an IDE. As a result, passwords will be echoed. Consider running POSReady from the command line.");
+	            System.out.print("\nPassword: ");
+				enc_pass = in.nextLine(); 
 	        }
-			System.out.print("\nPassword: ");
-			enc_pass = String.valueOf(console.readPassword());
+			
+	        else {
+	        	enc_pass = String.valueOf(console.readPassword());
+	        }
 			enc_pass = DigestUtils.sha256Hex(enc_pass);
 			reg.setEncPass(enc_pass); 
 			try {

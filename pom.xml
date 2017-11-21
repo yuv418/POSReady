@@ -4,7 +4,7 @@
   <artifactId>POSReady</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>POSReady</name>
-  <description>The free/open-source point of sale system</description>
+  <description>A point of sale system that is actually open source and will soon support cool credit card stuff.</description>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <resources>
@@ -22,6 +22,9 @@
         <configuration>
           <source/>
           <target/>
+          <excludes>
+          	<exclude>cli/*.java</exclude>
+          </excludes>
         </configuration>
       </plugin>
     </plugins>
@@ -64,4 +67,5 @@
   		<version>3.5.1</version>
   	</dependency>
   </dependencies>
+  <url>https://github.com/cdknight/POSReady</url>
 </project>
