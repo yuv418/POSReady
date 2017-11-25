@@ -8,10 +8,12 @@ import org.jline.reader.LineReader;
 
 import auth.Authenticator;
 import config.POSDebugConfig;
-
+import javax.swing.*; 
 
 public class AuthenticatorView extends View{
 
+	private JTextField username; 
+	private JPasswordField passwd; 
 	public AuthenticatorView(String env_type) {
 		super(env_type);
 	}
@@ -106,15 +108,12 @@ public class AuthenticatorView extends View{
 		
 }
 	
-	public static String unEscapeString(String s){
-	    StringBuilder sb = new StringBuilder();
-	    for (int i=0; i<s.length(); i++)
-	        switch (s.charAt(i)){
-	            case '\n': sb.append("\\n"); break;
-	            case '\t': sb.append("\\t"); break;
-	            // ... rest of escape characters
-	            default: sb.append(s.charAt(i));
-	        }
-	    return sb.toString();
+	public void display_graphical() {
+		//use swing; 
+		JFrame mjf = new JFrame("Authenticator");
+		JPanel mjp = new JPanel();
+		mjp.setLayout(new BoxLayout(mjp, BoxLayout.Y_AXIS));
+		
+		JTextField username = new JTextField(1); //text field with 1 column
 	}
 }
