@@ -45,4 +45,15 @@ public class POSItem {
 	public int getItemId() {
 		return this.item_id;
 	}
+	
+	public boolean changeItemPrice(double new_price) throws SQLException { //must be 2 decimal places, will add validation later.
+		String chItemPriceQuery = "UPDATE pos_items SET price= " + new_price + "WHERE id=" + this.item_id + ";";
+		Statement updateprice = mariadb_default.createStatement();
+		updateprice.executeQuery(chItemPriceQuery);
+		this.item_price = ImportantMethods.getResultDouble(mariadb_default, "pos_items", "price", "name", item_name);
+		if (this.item_price == new_price) {
+			return true; 
+		}
+		return false; 
+	}
 }
