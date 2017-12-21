@@ -24,9 +24,19 @@ private double price_less;
 		this.price_less = price_less; 
 	}
 	
-	public void modify_item() throws SQLException {
+	public void modify_item_rebates() throws SQLException {
 		String query = "INSERT INTO pos_rebates VALUES(\"" + tb_mod.getItemName() + "\", \"" + tb_mod.getItemId() + "\", " + this.price_less + ")";
 		Statement exec_mod = mariadb_default.createStatement(); 
 		exec_mod.executeQuery(query);
 	}
+	
+	public void modify_item_clearance() throws SQLException{
+	//the difference between rebates and clearance is that rebates is "coupon" but clearance is a set of items on clearance 
+		// they will still be in the items but they cannot have a rebate!
+		String query = "INSERT INTO pos_clearance VALUES(\"" + tb_mod.getItemName() + "," + tb_mod.getItemDescription() + "," + tb_mod.getItemId() + "," + this.price_less + ")";
+		Statement exec_mod = mariadb_default.createStatement();
+		exec_mod.executeQuery(query);
+	}
+	
 }
+
