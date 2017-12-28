@@ -2,8 +2,8 @@ package auth;
 import java.io.*; 
 import java.sql.*;
 import utils.ImportantMethods;
-
 import org.apache.commons.codec.digest.DigestUtils;
+
 
 public class CreateUser {
 

@@ -38,5 +38,20 @@ private double price_less;
 		exec_mod.executeQuery(query);
 	}
 	
+	public void remove_item_rebates() throws SQLException{
+		String query = "DELETE FROM pos_rebates WHERE id=" + tb_mod.getItemId() + ";"; //the reason that we query using id is because the java vm will be able to generate the query string faster 
+		//thus leading to *slightly* faster performance 
+		Statement exec_mod = mariadb_default.createStatement(); 
+		exec_mod.executeQuery(query); 
+		
+	}
+	
+	public void remove_item_clearance() throws SQLException{
+		String query = "DELETE FROM pos_clearance WHERE id=" + tb_mod.getItemId() + ";"; //same reason we query using id: performance
+		Statement exec_mod = mariadb_default.createStatement(); 
+		exec_mod.executeQuery(query);
+	}
+	
+	
 }
 
