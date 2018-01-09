@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import utils.ImportantMethods;
 public class ItemModifier {
 		//modifies an item to to have a rebate 
-private Connection mariadb_default; 
+private Connection mariadb_default;  
 private POSItem tb_mod; 
 private double price_less; 
 

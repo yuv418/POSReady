@@ -42,7 +42,7 @@ public class DeleteUserView extends View{
 		validator.run(); 
 	}
 	
-	public class DeleteUserSubmitListener implements ActionListener {
+	private class DeleteUserSubmitListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent arg0){
 			DeleteUser du = null;
