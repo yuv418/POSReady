@@ -42,7 +42,7 @@ private Connection mariadb_default;
 			throw new EmployeeNotCreatedException("username_exists"); //controller will deduce message "Sorry, the username exists already" and send it to the view. Controller here is exception
 		}
 		
-		String querylastid = "SELECT id FROM " + adminlevel + " ORDER BY id DESC LIMIT 1"; //get last id
+		String querylastid = "SELECT id FROM users_mappings ORDER BY id DESC LIMIT 1"; //get last id *edit* USE USERS_MAPPINGS FOR UNIVERSAL ID corrections
 		
 		ResultSet result_lastid = null;
 		result_lastid = insert_info.executeQuery(querylastid);

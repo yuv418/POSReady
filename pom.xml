@@ -23,7 +23,8 @@
           <source/>
           <target/>
           <excludes>
-          	<exclude>cli/*.java</exclude>
+          	<exclude>./cli/*.java</exclude>
+            <exclude>./auth/users/User.java</exclude>
           </excludes>
         </configuration>
       </plugin>

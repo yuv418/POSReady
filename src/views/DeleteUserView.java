@@ -10,41 +10,41 @@ import javax.swing.border.Border;
 
 import java.sql.SQLException;
 
-public class DeleteUserView extends View{
-	private JComboBox choose_method_deletion; 
-	private JTextField get_response; 
-	private JButton submit; 
+public class DeleteUserView extends TableView {
+	private JComboBox choose_method_deletion;
+	private JTextField get_response;
+	private JButton submit;
+
 	public DeleteUserView(String env_type) {
 		super(env_type);
 	}
+
 	public void display_graphical() {
-		JFrame jf = new JFrame("Delete User");
-		JPanel jp = new JPanel(); 
-		jp.setLayout(new BoxLayout(jp, BoxLayout.Y_AXIS));
-		
+		set_table("select username,id from users_mappings;");
+		frame = new JFrame("Delete User");
+		panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
 		String[] methods_deletion = {"Id", "Username"};
-		choose_method_deletion = new JComboBox(methods_deletion); 
-		
-		get_response = new JTextField(); 
-		
+		choose_method_deletion = new JComboBox(methods_deletion);
+
+		get_response = new JTextField();
 		submit = new JButton("Submit");
 		submit.addActionListener(new DeleteUserSubmitListener());
-		jp.add(choose_method_deletion);
-		jp.add(get_response);
-		jp.add(submit);
-		
-		jf.add(jp);
-		jf.setSize(300, 125);
-		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		jf.setVisible(true);
-	
-		Thread validator = new Thread (new DeleteUserValidator());
-		validator.run(); 
+		panel.add(scrollPane);
+		panel.add(submit);
+		frame.add(panel);
+		frame.setSize(300, 125);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		/*Thread t = new Thread(new DeleteUserDebugger());
+		t.run();*/
+
 	}
-	
+
 	private class DeleteUserSubmitListener implements ActionListener {
 
-		public void actionPerformed(ActionEvent arg0){
+		public void actionPerformed(ActionEvent arg0) {
 			DeleteUser du = null;
 			try {
 				du = new DeleteUser();
@@ -55,85 +55,52 @@ public class DeleteUserView extends View{
 				JOptionPane.showMessageDialog(null, "Sorry, an internal error occurred. POSReady will now exit this component.");
 				return;
 			}
-			String method_of_deletion = (String) choose_method_deletion.getSelectedItem();
-			if (method_of_deletion.equals("Id")) {
-				int id_del = 0; 
-				id_del = Integer.parseInt(get_response.getText());
-				
-				
-				try {
-					du.delete(id_del);
-				} catch (ClassNotFoundException e) {
-					JOptionPane.showMessageDialog(null, "Sorry, an internal error occurred. POSReady will now exit this component.");
-					return;
-				} catch (SQLException e) {
-					JOptionPane.showMessageDialog(null, "Sorry, an internal error occurred. POSReady will now exit this component.");
-					return;
-				} 
-			}
-			else if (method_of_deletion.equals("Username")) {
-				String username_del = get_response.getText(); 
-				if (username_del.contains(" ")) {
-					JOptionPane.showMessageDialog(null, "Sorry, but your input was invalid. \nREASON: Your input contained spaces");
+			int id_del = Integer.parseInt(query_table.getValueAt(query_table.getSelectedRow(), 1).toString());
+			System.out.println(id_del);
+			try {
+				du.delete(id_del); //compensate for index always starting with 0 by adding 1
+			} catch (ClassNotFoundException e) {
+				JOptionPane.showMessageDialog(null, "Sorry, an internal error occurred. POSReady will now exit this component.");
+				if (config.POSDebugConfig.console_debug()) {
+					e.printStackTrace();
 				}
-				try {
-					du.delete(username_del);
-				} catch (ClassNotFoundException e) {
-					JOptionPane.showMessageDialog(null, "Sorry, an internal error occurred. POSReady will now exit this component.");
-					return;
-				} catch (SQLException e) {
-					JOptionPane.showMessageDialog(null, "Sorry, an internal error occurred. POSReady will now exit this component.");
-					return; 
+				return;
+			} catch (SQLException e) {
+				JOptionPane.showMessageDialog(null, "Sorry, an internal error occurred. POSReady will now exit this component.");
+				if (config.POSDebugConfig.console_debug()) {
+					e.printStackTrace();
 				}
+				return;
 			}
-			
+
 			JOptionPane.showMessageDialog(null, "The user was deleted successfully.");
-			
+			set_table("select username,id from users_mappings");
+			panel.add(query_table);
 		}
 
-	
-		
 
 	}
-	
-	public class DeleteUserValidator implements Runnable{
+
+	public class DeleteUserDebugger implements Runnable {
 		public void run() {
-			Border default_border = get_response.getBorder(); 
-			Border red_border = BorderFactory.createLineBorder(Color.RED);
-			while(true) {
-				String response = get_response.getText();
-				if (choose_method_deletion.getSelectedItem().toString().equals("Id")) {
-					if (response.matches("^\\d+$")) { //is an integer 
-						get_response.setBorder(default_border);
-						get_response.setToolTipText("");
-						submit.setEnabled(true);
-					}
-					else {
-						get_response.setBorder(red_border);
-						get_response.setToolTipText("The Id you entered was not an integer!");
-						submit.setEnabled(false);
-					}
-				}
-				
-				else if (choose_method_deletion.getSelectedItem().toString().equals("Username")){
-					if (!response.contains(" ")) {
-						submit.setEnabled(true);
-						get_response.setBorder(default_border);
-						get_response.setToolTipText("");
-					}
-					else {
-						get_response.setBorder(red_border);
-						get_response.setToolTipText("The Id you entered was not an integer!");
-						submit.setEnabled(false);
-					}
-				}
-				
+			try{
+				Thread.sleep(3000);
+
 			}
+			catch(InterruptedException ie){
+				ie.printStackTrace();
+			}
+			boolean do_forever = true;
+			while (do_forever) {
+				System.out.println("column_selected " + query_table.getSelectedRow());
+				System.out.println("id: " + query_table.getValueAt(query_table.getSelectedRow(), 1));
+
+							}
 		}
 	}
-	
-	
-	
-	
-	
 }
+	
+	
+	
+	
+
