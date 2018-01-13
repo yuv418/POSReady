@@ -1,0 +1,16 @@
+sudo: required
+dist: xenial
+language: java
+
+addons:
+  mariadb: '10.0'
+before_install:
+
+before_install:
+  installer/dbsetup.sh
+
+install:
+  mvn exec:java -Dexec.mainClass=tests.CreateUserTest
+  mvn exec:java -Dexec.mainClass=tests.CreateItemTest
+  mvn exec:java -Dexec.mainClass=tests.DeleteUserTest
+  mvn exec:java -Dexec.mainClass=tests.DeleteItemTest
