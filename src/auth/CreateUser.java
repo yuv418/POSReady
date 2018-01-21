@@ -16,7 +16,7 @@ private String lastname;
 private String middlename; 
 
 private Connection mariadb_default; 
-	public CreateUser(String firstname, String middlename, String lastname, String username, String password, String adminlevel) throws FileNotFoundException, IOException, ClassNotFoundException, SQLException{
+	public CreateUser(String firstname, String middlename, String lastname, String username, String password, String adminlevel) throws ClassNotFoundException, SQLException{
 		this.hpw = DigestUtils.sha256Hex(password);
 		this.username = username.trim().replace(" ", ""); 
 		this.adminlevel = adminlevel; 
