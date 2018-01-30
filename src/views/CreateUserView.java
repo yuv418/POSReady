@@ -141,16 +141,7 @@ public class CreateUserView extends View{
                     passwd_inp.setToolTipText("Please enter a password");
                     submit_btn.setEnabled(true);
                 }
-                if (((String) user_level_cbox.getSelectedItem()).isEmpty()){  //not an integer
-                    user_level_cbox.setBorder(red_border);
-                    user_level_cbox.setToolTipText("Please select a user level");
-                    submit_btn.setEnabled(false);
-                }
-                else if (!((String) user_level_cbox.getSelectedItem()).isEmpty()){  //not an integer
-                    user_level_cbox.setBorder(default_border);
-                    user_level_cbox.setToolTipText("Please select a user level");
-                    submit_btn.setEnabled(true);
-                }
+
             }
         }
     }
