@@ -37,7 +37,7 @@ private Statement do_queries;
 		String check_item_exists = ImportantMethods.getResultString(mariadb_default, "pos_items", "name", "name", item_name);
 		
 		if (check_item_exists.equals(item_name)) {
-			
+			throw new ItemNotCreatedException("Item exists");
 		}
 		StringBuilder build_insert_query = new StringBuilder();
 		build_insert_query.append("INSERT INTO pos_items VALUES(");
