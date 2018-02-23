@@ -82,15 +82,26 @@ public class CreateItemView extends View {
             }
             catch (ClassNotFoundException cnfe){
                 JOptionPane.showMessageDialog(panel, "Sorry, but the item cannot be created since POSReady cannot access the database. Please check your installation and try again.");
+                if (config.POSDebugConfig.console_debug()){
+                    cnfe.printStackTrace();
+                }
+
             }
             catch (SQLException se){
                 JOptionPane.showMessageDialog(panel, "Sorry, but the POSReady database cannot be accessed at this time. Please check your POSReady installation, try again later, or make sure you are not using an unstable build.");
-                se.printStackTrace();
+                if (config.POSDebugConfig.console_debug()){
+                    se.printStackTrace();
+                }
+
             }
             catch (ItemNotCreatedException ince){
                 if (ince.getMessage().equals("Item exists")) {
                     JOptionPane.showMessageDialog(panel, "Sorry, but the item cannot be created - check if the item already exists");
                 }
+                if (config.POSDebugConfig.console_debug()){
+                    ince.printStackTrace();
+                }
+
             }
         }
     }
