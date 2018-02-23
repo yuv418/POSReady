@@ -28,19 +28,39 @@ public class CreateItemView extends View {
         //configure panel
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); //y axis box layout
 
+
+        JPanel enclosing_name_panel = new JPanel();
+        enclosing_name_panel.setLayout(new BoxLayout(enclosing_name_panel, BoxLayout.X_AXIS));
+        JLabel itmlbl = new JLabel("Item Name: ");
         item_name = new JTextField(); //one line only of JTextField
-        descr = new JTextField(5); //we'll have to limit this to 300 characters
+        enclosing_name_panel.add(itmlbl);
+        enclosing_name_panel.add(item_name);
+
+
+        JPanel enclosing_descr_panel = new JPanel();
+        enclosing_descr_panel.setLayout(new BoxLayout(enclosing_descr_panel, BoxLayout.X_AXIS));
+        descr = new JTextField(2); //we'll have to limit this to 300 characters
+        JLabel descrlbl = new JLabel("Description of Item: ");
+        enclosing_descr_panel.add(descrlbl);
+        enclosing_descr_panel.add(descr);
+
+        JPanel enclosing_price_panel = new JPanel();
+        enclosing_price_panel.setLayout(new BoxLayout(enclosing_price_panel, BoxLayout.X_AXIS));
         price = new JTextField();
+        JLabel pricelbl = new JLabel("Price of Item: ");
+        enclosing_price_panel.add(pricelbl);
+        enclosing_price_panel.add(price);
 
         submit_btn = new JButton("Submit");
         submit_btn.addActionListener(new CreateItemViewListener());
 
-        panel.add(item_name);
-        panel.add(descr);
-        panel.add(price);
+        panel.add(enclosing_descr_panel);
+        panel.add(enclosing_price_panel);
+        panel.add(enclosing_name_panel);
+        panel.add(submit_btn);
 
         frame.add(panel);
-        frame.setSize(500, 500);
+        frame.setSize(800, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
@@ -65,6 +85,7 @@ public class CreateItemView extends View {
             }
             catch (SQLException se){
                 JOptionPane.showMessageDialog(panel, "Sorry, but the POSReady database cannot be accessed at this time. Please check your POSReady installation, try again later, or make sure you are not using an unstable build.");
+                se.printStackTrace();
             }
             catch (ItemNotCreatedException ince){
                 if (ince.getMessage().equals("Item exists")) {
