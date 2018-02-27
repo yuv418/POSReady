@@ -118,7 +118,8 @@ public class AuthenticatorView extends View{
 		submit_btn.addActionListener(new SubmitListener());
 		mjp.add(username);
 		mjp.add(passwd);
-	   
+		mjp.add(submit_btn);
+
 		mjf.add(mjp);
 		mjf.setSize(300, 100);
 		mjf.setVisible(true);
@@ -129,7 +130,7 @@ public class AuthenticatorView extends View{
 		public void actionPerformed(ActionEvent e) {
 			String username_str = username.getText();
 			String encr_pass_str = DigestUtils.sha256Hex(String.valueOf(passwd.getPassword()));
-			
+			System.out.println("here");
 			Authenticator a_reg = null;
 			try {
 				a_reg = new Authenticator(username_str, encr_pass_str);
@@ -138,11 +139,9 @@ public class AuthenticatorView extends View{
 			} catch (SQLException e2) {
 				JOptionPane.showMessageDialog(null, "Sorry, POSReady could not connect to the database or there was an error in this build of POSReady. Please report this to the developers.");
 			}
-			
-			//nested try_catch!
 			try {
 				if (a_reg.chkUsername() && a_reg.chkPassword()) {
-					isAuthenticated = true; 
+					isAuthenticated = true;
 				}
 				
 			} catch (SQLException e1) {
