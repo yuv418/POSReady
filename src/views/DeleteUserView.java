@@ -95,7 +95,7 @@ public class DeleteUserView extends TableView {
 				System.out.println("column_selected " + query_table.getSelectedRow());
 				System.out.println("id: " + query_table.getValueAt(query_table.getSelectedRow(), 1));
 
-							}
+			}
 		}
 	}
 }
