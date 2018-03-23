@@ -3,7 +3,6 @@ import java.sql.*;
 import java.awt.*; 
 import javax.swing.*;
 import utils.ImportantMethods;
-import utils.ImportantMethods; 
 import java.util.ArrayList;
 
 public class TableView extends View{
