@@ -1,11 +1,14 @@
 # POSReady <br><br><img src="src/res/poslogo2.png" height="10%" width="10%" style="align:right" />
-Introducing POSReady 2.0 (coming soon)
-With a lot of new features 
+POSReady 2.0 (WIP)
+New features and refinements
 - Refined persons management
 - MariaDB for all items and users
-- 3 Modes: Command Line, Graphical, Curses Mode (maybe?) (Graphical interface for command line)
+- Refined JavaFX interface (current one is command line and Swing)
 - Faster performance and improved, quicker commands
 - More secure 
 - More compatible
-<br>And much more to come!! 
+<h1>Note</h1>
+<p>POSReady is a work in progress. It will be finished eventually. If you would like to help, please file a pull request</p>
+
+<br>And much more to come!
 <br>Stay tuned!
