@@ -4,7 +4,7 @@
   <artifactId>POSReady</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>POSReady</name>
-  <description>A point of sale system that is actually open source and will soon support cool credit card stuff.</description>
+  <description>An open source point of sale system.</description>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <resources>
@@ -23,8 +23,8 @@
           <source>1.8</source>
           <target>1.8</target>
           <excludes>
-          	<exclude>./cli/*.java</exclude>
-            <exclude>./auth/users/User.java</exclude>
+          	<exclude>cli/*.java</exclude>
+            <exclude>auth/users/User.java</exclude>
           </excludes>
         </configuration>
       </plugin>

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -13,7 +14,7 @@ import config.POSConfig;
 import auth.CreateUser;
 
 public class elevated_cli {
-	public static void initAdminPrompt(String[] args, User f){
+	public static void initAdminPrompt(String[] args, User f) throws SQLException, ClassNotFoundException {
 		Scanner in = new Scanner(System.in);
 		boolean page = true; 
 		ArrayList<String> commands = new ArrayList<String>();
@@ -146,14 +147,8 @@ public class elevated_cli {
 		}
 		
 		CreateUser f= null; 
-		try {
-			f = new CreateUser(username, password, isadmin);
-		} catch (FileNotFoundException e) {
-			System.err.println("Fatal User Creation Error.");
-		} catch (IOException e) {
-			System.err.println("Cannot Write to User Folder.");
-		}
-		f.write();
+
+		//f.write();
 		System.out.println("User created successfully.");
 	}
 	

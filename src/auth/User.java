@@ -10,8 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import config.POSConfig;
-import org.python.core.PyObject;
-import org.python.util.PythonInterpreter; 
+
 
 import org.apache.commons.io.*;
 public class User implements ActionListener{
@@ -74,12 +73,6 @@ private JTextField usr;
 		String pwd = "";
 		Console authconsole = System.console(); 
 		if (authconsole == null){
-			PythonInterpreter erp = new PythonInterpreter(); 
-			erp.exec("import getpass");
-			erp.exec("pwd = getpass.getpass()");
-			PyObject npwd = erp.get("pwd");
-			
-			pwd = npwd.toString(); 
 		}
 		else {
 			System.out.print("Password: " );

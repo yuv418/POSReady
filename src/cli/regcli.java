@@ -7,11 +7,12 @@ import config.POSConfig;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.Scanner; 
+import java.sql.SQLException;
+import java.util.Scanner;
 import java.util.ArrayList; 
 public class regcli {
 
-	public static void main(String[] args){
+	public static void main(String[] args) throws SQLException, ClassNotFoundException{
 		
 		Scanner in = new Scanner(System.in);
 		boolean page = true; 
@@ -72,7 +73,7 @@ public class regcli {
 		
 	}
 	
-	public static void newsale(){
+	public static void newsale() throws SQLException, ClassNotFoundException {
 		ArrayList<String> items= new ArrayList<String>(); 
 		System.out.println("NewSale Initiated");
 		Scanner in = new Scanner(System.in);
