@@ -9,6 +9,3 @@ New features and refinements
 - More compatible
 <h1>Note</h1>
 <p>POSReady is a work in progress. It will be finished eventually. If you would like to help, please file a pull request</p>
-
-<br>And much more to come!
-<br>Stay tuned!
